@@ -1,0 +1,9 @@
+/.venv-zeus
+
+/.mypy_cache
+__pycache__
+/datasets
+/models
+/logs
+/out
+/musescore
