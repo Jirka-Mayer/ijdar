@@ -11,7 +11,7 @@ Each value is LMX-SER on OmniOMR staff-level test split.
 | ------------- | --- | --------- | --------- | ----- | ------ |
 | `zod-auth`    | ❌  | ❌        | ✅        |       |        |
 | `zod-bw`      | ✅  | ❌        | ❌        |       |        |
-| `zod-bw-auth` | ✅  | ❌        | ✅        | ⌛    |        |
+| `zod-bw-auth` | ✅  | ❌        | ✅        | ...   |        |
 
 
 ## Preparing data
