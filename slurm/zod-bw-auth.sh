@@ -3,7 +3,7 @@
 #SBATCH -p gpu-ms,gpu-troja
 #SBATCH -N 1
 #SBATCH --gpus=1
-#SBATCH --constraint="gpuram48G"
+#SBATCH --constraint="gpuram48G|gpuram24G"
 #SBATCH --mem=32G
 #SBATCH -o logs/slurm-%x.%j.out
 #SBATCH -e logs/slurm-%x.%j.err
@@ -13,6 +13,9 @@
 
 # make cuda available
 module load cuda/11.8-cudnn8.6
+
+# temporary fix for a python issue
+export LD_LIBRARY_PATH="/opt/python/3.10.7/lib"
 
 time .venv-zeus/bin/zeus train \
     --experiment zod-bw-auth \

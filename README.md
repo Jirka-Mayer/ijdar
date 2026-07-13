@@ -37,7 +37,7 @@ zeus --help
 ## Running GPU interactive job on LRC
 
 ```bash
-srun --pty --gpus=1 --mem=32G -p gpu-ms,gpu-troja --constraint="gpuram48G" bash
+srun --pty --gpus=1 --mem=32G -p gpu-ms,gpu-troja --constraint="gpuram48G|gpuram24G" bash
 
 module load cuda/11.8-cudnn8.6
 
