@@ -15,7 +15,7 @@
 module load cuda/11.8-cudnn8.6
 
 # temporary fix for a python issue
-export LD_LIBRARY_PATH="/opt/python/3.10.7/lib"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/python/3.10.7/lib"
 
 time .venv-zeus/bin/zeus train \
     --experiment zod-bw-auth \
