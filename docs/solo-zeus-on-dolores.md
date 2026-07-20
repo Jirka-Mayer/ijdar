@@ -7,11 +7,11 @@ Experiment name is `zod` = zeus on dolores.
 
 Each value is LMX-SER on OmniOMR staff-level test split.
 
-| Ex. Name      | B/W | Smashcima | Authentic | SER   | SER FT |
-| ------------- | --- | --------- | --------- | ----- | ------ |
-| `zod-auth`    | ❌  | ❌        | ✅        |       |        |
-| `zod-bw`      | ✅  | ❌        | ❌        |       |        |
-| `zod-bw-auth` | ✅  | ❌        | ✅        | ...   |        |
+| Ex. Name      | B/W | Smashcima | Authentic | SER    | SER FT |
+| ------------- | --- | --------- | --------- | ------ | ------ |
+| `zod-auth`    | ❌  | ❌        | ✅        |        |        |
+| `zod-bw`      | ✅  | ❌        | ❌        |        |        |
+| `zod-bw-auth` | ✅  | ❌        | ✅        | 42.421 | ...    |
 
 
 ## Preparing data
