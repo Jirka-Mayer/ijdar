@@ -18,45 +18,9 @@ Each value is LMX-SER on OmniOMR staff-level test split.
 
 The experiment data sits in the `datasets/` folder, specifically the `dolores` and `omniomr` dataset. For both, all three splits are needed (train, validation, test).
 
-You can prepare the data locally on your laptop and then only upload pickled variants to the cluster.
+See [prepare datasets](prepare-datasets.md) to get the relevant datasets ready.
 
-> Following code assumes you have both datasets downloaded in `~/musicorpus` from the [download link](http://hdl.handle.net/20.500.12800/1-6147).
-
-```bash
-source .venv-zeus/bin/activate
-
-# prepare dolores
-zeus musicorpus \
-    --input ~/musicorpus/CVC.Dolores \
-    --output datasets/dolores \
-    --take_staves
-zeus render \
-    --image_suffix '_rendered' \
-    datasets/dolores/samples.all.txt
-zeus pickle datasets/dolores/samples.train.txt
-zeus pickle datasets/dolores/samples.test.txt
-zeus pickle datasets/dolores/samples.validation.txt
-zeus pickle --image_suffix '_rendered' --benevolent datasets/dolores/samples.train.txt
-zeus pickle --image_suffix '_rendered' --benevolent datasets/dolores/samples.test.txt
-zeus pickle --image_suffix '_rendered' --benevolent datasets/dolores/samples.validation.txt
-
-# prepare omniomr
-zeus musicorpus \
-    --input ~/musicorpus/UFAL.OmniOMR \
-    --output datasets/omniomr \
-    --take_staves
-zeus render \
-    --image_suffix '_rendered' \
-    datasets/omniomr/samples.all.txt
-zeus pickle datasets/omniomr/samples.train.txt
-zeus pickle datasets/omniomr/samples.test.txt
-zeus pickle datasets/omniomr/samples.validation.txt
-zeus pickle --image_suffix '_rendered' --benevolent datasets/omniomr/samples.train.txt
-zeus pickle --image_suffix '_rendered' --benevolent datasets/omniomr/samples.test.txt
-zeus pickle --image_suffix '_rendered' --benevolent datasets/omniomr/samples.validation.txt
-
-# copy pickle files to cluster via nautilus
-```
+After preparation, copy the relevant pickles to the compute cluster.
 
 
 ## Training models

@@ -36,6 +36,13 @@ zeus train \
 ## Experiments
 
 
+### AYCE - All you can eat
+
+We take all the data we have and train a `solo26` Zeus on it to see how low we can get the SER on the OmniOMR test set.
+
+[Learn more about this experiment here](docs/ayce.md)
+
+
 ### Solo Zeus on Dolores
 
 Before we can start picking apart which parts of data synthesis affect results how, we should put Smashcima synthesis in the context of other synthesis (e.g. MuseScore B/W images). We still live in the pre-training, then fine-tuning regime. We pre-train on Dolores, then fine-tune on OmniOMR. OmniOMR test set is the ultimate goal.
@@ -48,4 +55,4 @@ We pre-train on Dolores train split with these image variants:
 
 And we train on all, as well as on ablated subsets to see the effect of each.
 
-[Learn more about this experiment here](solo-zeus-on-dolores.md)
+[Learn more about this experiment here](docs/solo-zeus-on-dolores.md)
