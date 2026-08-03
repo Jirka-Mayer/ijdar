@@ -7,20 +7,7 @@ Here I run/track/code experiments for my final PhD Thesis journal paper (likely 
 
 ```bash
 python3.10 -m venv .venv-zeus
-.venv-zeus/bin/pip install 'zeus @ git+https://github.com/OmniOMR/zeus.git@main'
-```
-
-To update to latest zeus, do:
-
-```bash
-.venv-zeus/bin/pip uninstall zeus
-.venv-zeus/bin/pip install 'zeus @ git+https://github.com/OmniOMR/zeus.git@main'
-```
-
-You can also install via symlink on your laptop:
-
-```bash
-.venv-zeus/bin/pip install -e ../zeus
+.venv-zeus/bin/pip install 'zeus @ git+https://github.com/OmniOMR/zeus.git@v1.0.0'
 ```
 
 Now you can use the `zeus` command:

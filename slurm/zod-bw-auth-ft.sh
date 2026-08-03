@@ -16,7 +16,7 @@ module load cuda/11.8-cudnn8.6
 
 time .venv-zeus/bin/zeus train \
     --experiment zod-bw-auth-ft \
-    --model models/zod-bw-auth.model \
+    --model-snapshot models/zod-bw-auth.model \
     --train \
         datasets/omniomr/samples_rendered.train.pickle \
         datasets/omniomr/samples.train.pickle \
@@ -30,9 +30,9 @@ time .venv-zeus/bin/zeus train \
         datasets/omniomr/samples_rendered.test.pickle \
         datasets/omniomr/samples.test.pickle \
     --epochs 40 \
-    --evaluation_from 1 \
-    --evaluation_each 1 \
-    --batch_size 32 \
-    --learning_rate 1e-4 \
-    --lr_decay none \
-    --quiet_tf
+    --evaluation-from 1 \
+    --evaluation-each 1 \
+    --batch-size 32 \
+    --learning-rate 1e-4 \
+    --lr-decay none \
+    --quiet-tf

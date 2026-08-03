@@ -14,12 +14,9 @@
 # make cuda available
 module load cuda/11.8-cudnn8.6
 
-# temporary fix for a python issue
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/opt/python/3.10.7/lib"
-
 time .venv-zeus/bin/zeus train \
     --experiment zod-bw-auth \
-    --new_model solo26 \
+    --architecture solo26 \
     --train \
         datasets/dolores/samples_rendered.train.pickle \
         datasets/dolores/samples_rendered.test.pickle \
@@ -33,9 +30,9 @@ time .venv-zeus/bin/zeus train \
         datasets/omniomr/samples_rendered.test.pickle \
         datasets/omniomr/samples.test.pickle \
     --epochs 430 \
-    --evaluation_from 10 \
-    --evaluation_each 10 \
-    --batch_size 32 \
-    --learning_rate 1e-3 \
-    --lr_decay cos \
-    --quiet_tf
+    --evaluation-from 10 \
+    --evaluation-each 10 \
+    --batch-size 32 \
+    --learning-rate 1e-3 \
+    --lr-decay cos \
+    --quiet-tf

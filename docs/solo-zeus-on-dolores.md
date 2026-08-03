@@ -11,7 +11,7 @@ Each value is LMX-SER on OmniOMR staff-level test split.
 | ------------- | --- | --------- | --------- | ------ | ------ |
 | `zod-auth`    | ❌  | ❌        | ✅        |        |        |
 | `zod-bw`      | ✅  | ❌        | ❌        |        |        |
-| `zod-bw-auth` | ✅  | ❌        | ✅        | 42.421 | ...    |
+| `zod-bw-auth` | ✅  | ❌        | ✅        | 42.421 | 39.337 |
 
 
 ## Preparing data
@@ -74,7 +74,7 @@ The 2024 olimpic zeus was trained for 500 epochs on a dataset of 15014 samples, 
 ```bash
 zeus train \
     --experiment zod-bw-auth \
-    --new_model solo26 \
+    --architecture solo26 \
     --train \
         datasets/dolores/samples_rendered.train.pickle \
         datasets/dolores/samples_rendered.test.pickle \
@@ -88,21 +88,22 @@ zeus train \
         datasets/omniomr/samples_rendered.test.pickle \
         datasets/omniomr/samples.test.pickle \
     --epochs 430 \
-    --evaluation_from 10 \
-    --evaluation_each 10 \
-    --batch_size 32 \
-    --learning_rate 1e-3 \
-    --lr_decay cos \
-    --quiet_tf
+    --evaluation-from 10 \
+    --evaluation-each 10 \
+    --batch-size 32 \
+    --learning-rate 1e-3 \
+    --lr-decay cos \
+    --quiet-tf
 ```
 
 ```bash
-zeus visualize_data \
+zeus visualize-data \
+    --architecture solo26 \
     --train \
         datasets/dolores/samples_rendered.train.pickle \
         datasets/dolores/samples_rendered.test.pickle \
         datasets/dolores/samples.train.pickle \
         datasets/dolores/samples.test.pickle \
     --augment "h:8,rotate:1,v:4,de,en3:0.2,n:0.01,c:-1:1,b:-0.5:0.2" \
-    --batch_size 32
+    --batch-size 32
 ```
