@@ -17,6 +17,7 @@ module load cuda/11.8-cudnn8.6
 time .venv-zeus/bin/zeus train \
     --experiment zod-bw-auth \
     --architecture solo26 \
+    --input-subdivisions Staves \
     --train \
         datasets/dolores/samples_rendered.train.pickle \
         datasets/dolores/samples_rendered.test.pickle \

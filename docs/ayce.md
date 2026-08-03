@@ -66,6 +66,7 @@ Let's train at 200 epochs and see what happens. Let's also train `ayce-long` for
 zeus train \
     --experiment ayce \
     --architecture solo26 \
+    --input-subdivisions Staves \
     --train \
         datasets/dolores/samples.train.pickle \
         datasets/dolores/samples.validation.pickle \

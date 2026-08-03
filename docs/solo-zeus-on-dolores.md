@@ -39,6 +39,7 @@ The 2024 olimpic zeus was trained for 500 epochs on a dataset of 15014 samples, 
 zeus train \
     --experiment zod-bw-auth \
     --architecture solo26 \
+    --input-subdivisions Staves \
     --train \
         datasets/dolores/samples_rendered.train.pickle \
         datasets/dolores/samples_rendered.test.pickle \
