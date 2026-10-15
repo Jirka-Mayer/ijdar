@@ -36,6 +36,13 @@ zeus train \
 ## Experiments
 
 
+### Smascima - Experiments measuring smashcima data effect on Zeus
+
+We train a `solo26` Zeus on progressively more smashcima samples to see how it can attack the OmniOMR dataset when fine-tuned. Similar as in ICDAR 2026, just now doing a grid-search instead of computing one number. And also using Dolores now.
+
+[Learn more about this experiment here](docs/smashcima.md)
+
+
 ### AYCE - All you can eat
 
 We take all the data we have and train a `solo26` Zeus on it to see how low we can get the SER on the OmniOMR test set.
