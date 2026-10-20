@@ -37,7 +37,7 @@ time .venv-zeus/bin/zeus train \
         datasets/dolores/samples_rendered.test.pickle \
         datasets/olimpic-scanned/samples.test.pickle \
         datasets/olimpic-synthetic/samples.test.pickle \
-    --epochs 205 \
+    --epochs 219 \
     --evaluation-from 10 \
     --evaluation-each 10 \
     --metrics SER,SERpitchonly \

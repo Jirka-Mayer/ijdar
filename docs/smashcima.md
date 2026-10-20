@@ -49,14 +49,16 @@ The two-step setup derived in ICDAR 2026 is:
 1. Train base model
 2. Fine-tune base model on OmniOMR
 
-Dataset **training slice** sizes in samples:
+Dataset **training slice** sizes in samples, numbers loaded from pickle and reported by zeus at the start of training are bold:
 
-- OLiMPiC Synthetic `24197`
-- Dolores `6294`
-- Dolores Rendered `6294` (may be less due to rendering issues)
-- OmniOMR `695`
-- OmniOMR Rendered `695` (may be less due to rendering issues)
-- OLiMPiC Smashcima `24197` (may be less due to rendering issues)
+- OLiMPiC Synthetic `24197` (now **`22036`**)
+- Dolores **`6294`**
+- Dolores Rendered `6294?` (actually **`6031`** due to rendering issues)
+- OmniOMR **`695`**
+- OmniOMR Rendered `695?` (actually **`693`** due to rendering issues)
+- OLiMPiC Smashcima `22036?` (may be less due to rendering issues)
+
+> **Note:** After olimpic export was corrected (grandstaff unzipping with key signatures), the number of exported training samples dropped from 24197 to 22036.
 
 For training time, we want to compare data, not get the best model. So we will base our training time off of the old zeus 2024 model, which was trained for 7507000 training samples (this is the same setup `ayce` used for the 200 epochs calculation). So to get our epoch count, simply sum up the number of samples in one epoch and divide:
 
@@ -82,62 +84,64 @@ pie showData title ayce (for reference)
     "[HW] OmniOMR (train)" : 695
 ```
 
+> AYCE sample numbers differ because it's an older export of olimpic, plus the rendered samples are not measured, just estimated.
+
 ```mermaid
 pie showData title smc-nosmash
-    "[BD] OLiMPiC Synthetic (train)" : 24197
-    "[BD] Dolores Rendered (train)" : 6294
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] Dolores Rendered (train)" : 6031
     "[HW] Dolores (train)" : 6294
 ```
 
 ```
-EPOCHS: smc-nosmash-withomni
-samples in epoch: 24197+6294+6294 = 36785
-epochs = ceil(7507000 / 36785)
-epochs = 205
+EPOCHS: smc-nosmash
+samples in epoch: 22036+6031+6294 = 34361
+epochs = ceil(7507000 / 34361)
+epochs = 219
 ```
 
 ```mermaid
 pie showData title smc-gboth-s1
-    "[BD] OLiMPiC Synthetic (train)" : 24197
-    "[BD] Dolores Rendered (train)" : 6294
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] Dolores Rendered (train)" : 6031
     "[HW] Dolores (train)" : 6294
-    "[SC] OLiMPiC Smashcima (train)" : 24197
+    "[SC] OLiMPiC Smashcima (train)" : 22036
     "[SC] Dolores Smashcima 2x (train 2x)" : 12588
 ```
 
 ```mermaid
 pie showData title smc-nosmash-withomni
-    "[BD] OLiMPiC Synthetic (train)" : 24197
-    "[BD] Dolores Rendered (train)" : 6294
-    "[BD] OmniOMR Rendered (train)" : 695
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] Dolores Rendered (train)" : 6031
+    "[BD] OmniOMR Rendered (train)" : 693
     "[HW] Dolores (train)" : 6294
     "[HW] OmniOMR (train)" : 695
 ```
 
 ```
 EPOCHS: smc-nosmash-withomni
-samples in epoch: 24197+6294+695+6294+695 = 38175
-epochs = ceil(7507000 / 38175)
-epochs = 197
+samples in epoch: 22036+6031+693+6294+695 = 35749
+epochs = ceil(7507000 / 35749)
+epochs = 210
 ```
 
 ```mermaid
 pie showData title smc-gboth-s1-withomni
-    "[BD] OLiMPiC Synthetic (train)" : 24197
-    "[BD] Dolores Rendered (train)" : 6294
-    "[BD] OmniOMR Rendered (train)" : 695
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] Dolores Rendered (train)" : 6031
+    "[BD] OmniOMR Rendered (train)" : 693
     "[HW] Dolores (train)" : 6294
     "[HW] OmniOMR (train)" : 695
-    "[SC] OLiMPiC Smashcima (train)" : 24197
+    "[SC] OLiMPiC Smashcima (train)" : 22036
     "[SC] Dolores Smashcima 2x (train 2x)" : 12588
     "[SC] OmniOMR Smashcima 2x (train 2x)" : 1390
 ```
 
 ```mermaid
 pie showData title smc-gboth-s2-withomni
-    "[BD] OLiMPiC Synthetic (train)" : 24197
-    "[BD] Dolores Rendered (train)" : 6294
-    "[BD] OmniOMR Rendered (train)" : 695
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] Dolores Rendered (train)" : 6031
+    "[BD] OmniOMR Rendered (train)" : 693
     "[HW] Dolores (train)" : 6294
     "[HW] OmniOMR (train)" : 695
     "[SC] OLiMPiC Smashcima 2x (train 2x)" : 48394
@@ -147,9 +151,9 @@ pie showData title smc-gboth-s2-withomni
 
 ```mermaid
 pie showData title smc-gboth-s3-withomni
-    "[BD] OLiMPiC Synthetic (train)" : 24197
-    "[BD] Dolores Rendered (train)" : 6294
-    "[BD] OmniOMR Rendered (train)" : 695
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] Dolores Rendered (train)" : 6031
+    "[BD] OmniOMR Rendered (train)" : 693
     "[HW] Dolores (train)" : 6294
     "[HW] OmniOMR (train)" : 695
     "[SC] OLiMPiC Smashcima 3x (train 3x)" : 72591
@@ -159,9 +163,9 @@ pie showData title smc-gboth-s3-withomni
 
 ```mermaid
 pie showData title smc-gboth-s4-withomni
-    "[BD] OLiMPiC Synthetic (train)" : 24197
-    "[BD] Dolores Rendered (train)" : 6294
-    "[BD] OmniOMR Rendered (train)" : 695
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] Dolores Rendered (train)" : 6031
+    "[BD] OmniOMR Rendered (train)" : 693
     "[HW] Dolores (train)" : 6294
     "[HW] OmniOMR (train)" : 695
     "[SC] OLiMPiC Smashcima 4x (train 4x)" : 96788
