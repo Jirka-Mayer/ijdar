@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH -J smc-nosmash-withomni
+#SBATCH -J smc-nosmash
 #SBATCH -p gpu-ms,gpu-troja
 #SBATCH -N 1
 #SBATCH --gpus=1
@@ -15,7 +15,7 @@
 module load cuda/11.8-cudnn8.6
 
 time .venv-zeus/bin/zeus train \
-    --experiment smc-nosmash-withomni \
+    --experiment smc-nosmash \
     --architecture solo26 \
     --input-subdivisions Staves \
     --train \
