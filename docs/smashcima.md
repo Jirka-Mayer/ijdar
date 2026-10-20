@@ -2,23 +2,43 @@
 
 Experiment names are for the base models:
 
-- `smc-mpp-s0` = smashcima with mpp glyphs
-- `smc-omni-s0` = smashcima with OmniOMR glyphs
-- `smc-both-s0` = smashcima with both glyph sets
+- `smc-gmpp-s1` = smashcima with mpp glyphs
+- `smc-gomni-s1` = smashcima with OmniOMR glyphs
+- `smc-gboth-s1` = smashcima with both glyph sets
+- `smc-nosmash` = smashcima is not used in training
 
-Where `s0`, `s1`, `s2` means how many times the smashcima data is used.
+Where `s1`, `s2`, `s3` means how many times the smashcima data is used. And `nosmash` means zero-times, but then the glyph type does not make sense, so it's also omitted.
 
 Then for Elona's models:
 
-- `smcel-{glyphs}` = smashcima Elona
+- `smcel-...` instead of `smc-...` = smashcima Elona
 
-Then for models without OmniOMR in training:
+Then for models with OmniOMR dataset in training (which cannot be cross-validated):
 
-- `smc(el)-{glyphs}-nomni` = no OmniOMR
+- `smc-...-withomni` = OmniOMR used in training
 
 For the fine-tuned models are names:
 
-- ...
+- Just fine-tuned `-ft-e15` then `-ft-ebest` (best fine-tuning epoch)
+- K-cross-validated fine-tuned `-k5i0-ft-ebest` (k = fold count, i = zero-based fold index)
+
+This is a listing of names that actually exist (planned or trained):
+
+```yaml
+# compare omniomr
+smc-nosmash
+smc-nosmash-withomni
+
+smc-gboth-s1
+smc-gboth-s2
+smc-gboth-s3
+smc-gboth-s4
+
+smc-gboth-s1-withomni
+smc-gboth-s2-withomni
+smc-gboth-s3-withomni
+smc-gboth-s4-withomni
+```
 
 Solo-staff only, `solo26` zeus architecture. Only train portions of datasets for training.
 
@@ -38,6 +58,12 @@ Dataset **training slice** sizes in samples:
 - OmniOMR Rendered `695` (may be less due to rendering issues)
 - OLiMPiC Smashcima `24197` (may be less due to rendering issues)
 
+For training time, we want to compare data, not get the best model. So we will base our training time off of the old zeus 2024 model, which was trained for 7507000 training samples (this is the same setup `ayce` used for the 200 epochs calculation). So to get our epoch count, simply sum up the number of samples in one epoch and divide:
+
+```
+epochs = ceil(7507000 / {samples in one epoch})
+```
+
 
 ## Ratios of data in an epoch (or a batch) for base model training
 
@@ -47,7 +73,7 @@ Dataset **training slice** sizes in samples:
 - SC = smashcima synthetic handwritten
 
 ```mermaid
-pie showData title AYCE (for reference)
+pie showData title ayce (for reference)
     "[BD] OLiMPiC Synthetic (train)" : 24197
     "[BD] Dolores Rendered (train+val)" : 7852
     "[BD] OmniOMR Rendered (train)" : 695
@@ -57,7 +83,30 @@ pie showData title AYCE (for reference)
 ```
 
 ```mermaid
-pie showData title No Smashcima (smc-both-s0)
+pie showData title smc-nosmash
+    "[BD] OLiMPiC Synthetic (train)" : 24197
+    "[BD] Dolores Rendered (train)" : 6294
+    "[HW] Dolores (train)" : 6294
+```
+
+```
+EPOCHS: smc-nosmash-withomni
+samples in epoch: 24197+6294+6294 = 36785
+epochs = ceil(7507000 / 36785)
+epochs = 205
+```
+
+```mermaid
+pie showData title smc-gboth-s1
+    "[BD] OLiMPiC Synthetic (train)" : 24197
+    "[BD] Dolores Rendered (train)" : 6294
+    "[HW] Dolores (train)" : 6294
+    "[SC] OLiMPiC Smashcima (train)" : 24197
+    "[SC] Dolores Smashcima 2x (train 2x)" : 12588
+```
+
+```mermaid
+pie showData title smc-nosmash-withomni
     "[BD] OLiMPiC Synthetic (train)" : 24197
     "[BD] Dolores Rendered (train)" : 6294
     "[BD] OmniOMR Rendered (train)" : 695
@@ -65,8 +114,15 @@ pie showData title No Smashcima (smc-both-s0)
     "[HW] OmniOMR (train)" : 695
 ```
 
+```
+EPOCHS: smc-nosmash-withomni
+samples in epoch: 24197+6294+695+6294+695 = 38175
+epochs = ceil(7507000 / 38175)
+epochs = 197
+```
+
 ```mermaid
-pie showData title Smashcima Once (smc-both-s1)
+pie showData title smc-gboth-s1-withomni
     "[BD] OLiMPiC Synthetic (train)" : 24197
     "[BD] Dolores Rendered (train)" : 6294
     "[BD] OmniOMR Rendered (train)" : 695
@@ -78,7 +134,7 @@ pie showData title Smashcima Once (smc-both-s1)
 ```
 
 ```mermaid
-pie showData title Smashcima Twice (smc-both-s2)
+pie showData title smc-gboth-s2-withomni
     "[BD] OLiMPiC Synthetic (train)" : 24197
     "[BD] Dolores Rendered (train)" : 6294
     "[BD] OmniOMR Rendered (train)" : 695
@@ -90,7 +146,7 @@ pie showData title Smashcima Twice (smc-both-s2)
 ```
 
 ```mermaid
-pie showData title Smashcima Thrice (smc-both-s3)
+pie showData title smc-gboth-s3-withomni
     "[BD] OLiMPiC Synthetic (train)" : 24197
     "[BD] Dolores Rendered (train)" : 6294
     "[BD] OmniOMR Rendered (train)" : 695
@@ -102,7 +158,7 @@ pie showData title Smashcima Thrice (smc-both-s3)
 ```
 
 ```mermaid
-pie showData title Smashcima Quad (smc-both-s4)
+pie showData title smc-gboth-s4-withomni
     "[BD] OLiMPiC Synthetic (train)" : 24197
     "[BD] Dolores Rendered (train)" : 6294
     "[BD] OmniOMR Rendered (train)" : 695
