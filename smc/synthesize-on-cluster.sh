@@ -28,8 +28,10 @@ fi
 
 mkdir -p logs
 
-# xvfb-run provides a virtual X server, without it MuseScore fails to start
-CMD="xvfb-run -a smc/.venv/bin/smc synthesize \
+# worker nodes have no X server (nor xvfb-run), so MuseScore must use the
+# headless Qt platform (MuseScore 4 needs both variables to really use it)
+CMD="QT_QPA_PLATFORM=offscreen MU_QT_QPA_PLATFORM=offscreen \
+    smc/.venv/bin/smc synthesize \
     --input-dataset $INPUT_DATASET \
     --output-dataset $OUTPUT_DATASET \
     --glyphs $GLYPHS \
