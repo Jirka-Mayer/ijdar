@@ -56,7 +56,9 @@ Dataset **training slice** sizes in samples, numbers loaded from pickle and repo
 - Dolores Rendered `6294?` (actually **`6031`** due to rendering issues)
 - OmniOMR **`695`**
 - OmniOMR Rendered `695?` (actually **`693`** due to rendering issues)
-- OLiMPiC Smashcima `22036?` (may be less due to rendering issues)
+- OLiMPiC Smashcima **`21019`** (average over the 4 copies, which range from 20988 to 21035)
+- Dolores Smashcima **`6022`** (average over the 8 copies, which range from 5999 to 6034)
+- OmniOMR Smashcima **`660`** (average over the 8 copies, which range from 656 to 663)
 
 > **Note:** After olimpic export was corrected (grandstaff unzipping with key signatures), the number of exported training samples dropped from 24197 to 22036.
 
@@ -105,8 +107,63 @@ pie showData title smc-gboth-s1
     "[BD] OLiMPiC Synthetic (train)" : 22036
     "[BD] Dolores Rendered (train)" : 6031
     "[HW] Dolores (train)" : 6294
-    "[SC] OLiMPiC Smashcima (train)" : 22036
-    "[SC] Dolores Smashcima 2x (train 2x)" : 12588
+    "[SC] OLiMPiC Smashcima (train)" : 21019
+    "[SC] Dolores Smashcima 2x (train 2x)" : 12044
+```
+
+```
+EPOCHS: smc-gboth-s1
+samples in epoch: 22036+6031+6294+21019+12044 = 67424
+epochs = ceil(7507000 / 67424)
+epochs = 112
+```
+
+```mermaid
+pie showData title smc-gboth-s2
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] Dolores Rendered (train)" : 6031
+    "[HW] Dolores (train)" : 6294
+    "[SC] OLiMPiC Smashcima 2x (train 2x)" : 42038
+    "[SC] Dolores Smashcima 4x (train 4x)" : 24088
+```
+
+```
+EPOCHS: smc-gboth-s2
+samples in epoch: 22036+6031+6294+42038+24088 = 100487
+epochs = ceil(7507000 / 100487)
+epochs = 75
+```
+
+```mermaid
+pie showData title smc-gboth-s3
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] Dolores Rendered (train)" : 6031
+    "[HW] Dolores (train)" : 6294
+    "[SC] OLiMPiC Smashcima 3x (train 3x)" : 63057
+    "[SC] Dolores Smashcima 6x (train 6x)" : 36132
+```
+
+```
+EPOCHS: smc-gboth-s3
+samples in epoch: 22036+6031+6294+63057+36132 = 133550
+epochs = ceil(7507000 / 133550)
+epochs = 57
+```
+
+```mermaid
+pie showData title smc-gboth-s4
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] Dolores Rendered (train)" : 6031
+    "[HW] Dolores (train)" : 6294
+    "[SC] OLiMPiC Smashcima 4x (train 4x)" : 84076
+    "[SC] Dolores Smashcima 8x (train 8x)" : 48176
+```
+
+```
+EPOCHS: smc-gboth-s4
+samples in epoch: 22036+6031+6294+84076+48176 = 166613
+epochs = ceil(7507000 / 166613)
+epochs = 46
 ```
 
 ```mermaid
@@ -132,9 +189,16 @@ pie showData title smc-gboth-s1-withomni
     "[BD] OmniOMR Rendered (train)" : 693
     "[HW] Dolores (train)" : 6294
     "[HW] OmniOMR (train)" : 695
-    "[SC] OLiMPiC Smashcima (train)" : 22036
-    "[SC] Dolores Smashcima 2x (train 2x)" : 12588
-    "[SC] OmniOMR Smashcima 2x (train 2x)" : 1390
+    "[SC] OLiMPiC Smashcima (train)" : 21019
+    "[SC] Dolores Smashcima 2x (train 2x)" : 12044
+    "[SC] OmniOMR Smashcima 2x (train 2x)" : 1320
+```
+
+```
+EPOCHS: smc-gboth-s1-withomni
+samples in epoch: 22036+6031+693+6294+695+21019+12044+1320 = 70132
+epochs = ceil(7507000 / 70132)
+epochs = 108
 ```
 
 ```mermaid
@@ -144,9 +208,16 @@ pie showData title smc-gboth-s2-withomni
     "[BD] OmniOMR Rendered (train)" : 693
     "[HW] Dolores (train)" : 6294
     "[HW] OmniOMR (train)" : 695
-    "[SC] OLiMPiC Smashcima 2x (train 2x)" : 48394
-    "[SC] Dolores Smashcima 4x (train 4x)" : 25176
-    "[SC] OmniOMR Smashcima 4x (train 4x)" : 2780
+    "[SC] OLiMPiC Smashcima 2x (train 2x)" : 42038
+    "[SC] Dolores Smashcima 4x (train 4x)" : 24088
+    "[SC] OmniOMR Smashcima 4x (train 4x)" : 2640
+```
+
+```
+EPOCHS: smc-gboth-s2-withomni
+samples in epoch: 22036+6031+693+6294+695+42038+24088+2640 = 104515
+epochs = ceil(7507000 / 104515)
+epochs = 72
 ```
 
 ```mermaid
@@ -156,9 +227,16 @@ pie showData title smc-gboth-s3-withomni
     "[BD] OmniOMR Rendered (train)" : 693
     "[HW] Dolores (train)" : 6294
     "[HW] OmniOMR (train)" : 695
-    "[SC] OLiMPiC Smashcima 3x (train 3x)" : 72591
-    "[SC] Dolores Smashcima 6x (train 6x)" : 37764
-    "[SC] OmniOMR Smashcima 6x (train 6x)" : 4170
+    "[SC] OLiMPiC Smashcima 3x (train 3x)" : 63057
+    "[SC] Dolores Smashcima 6x (train 6x)" : 36132
+    "[SC] OmniOMR Smashcima 6x (train 6x)" : 3960
+```
+
+```
+EPOCHS: smc-gboth-s3-withomni
+samples in epoch: 22036+6031+693+6294+695+63057+36132+3960 = 138898
+epochs = ceil(7507000 / 138898)
+epochs = 55
 ```
 
 ```mermaid
@@ -168,9 +246,16 @@ pie showData title smc-gboth-s4-withomni
     "[BD] OmniOMR Rendered (train)" : 693
     "[HW] Dolores (train)" : 6294
     "[HW] OmniOMR (train)" : 695
-    "[SC] OLiMPiC Smashcima 4x (train 4x)" : 96788
-    "[SC] Dolores Smashcima 8x (train 8x)" : 50352
-    "[SC] OmniOMR Smashcima 8x (train 8x)" : 5560
+    "[SC] OLiMPiC Smashcima 4x (train 4x)" : 84076
+    "[SC] Dolores Smashcima 8x (train 8x)" : 48176
+    "[SC] OmniOMR Smashcima 8x (train 8x)" : 5280
+```
+
+```
+EPOCHS: smc-gboth-s4-withomni
+samples in epoch: 22036+6031+693+6294+695+84076+48176+5280 = 173281
+epochs = ceil(7507000 / 173281)
+epochs = 44
 ```
 
 Musical-content-wise the ratios stay fixed:

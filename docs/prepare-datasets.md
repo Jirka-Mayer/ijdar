@@ -158,7 +158,7 @@ done
 
 ## OmniOMR Smashcima
 
-Not used in the experiments, prepared just for completeness. Note that the OmniOMR glyphs come from the OmniOMR train split, so the `gomni` and `gboth` variants leak glyph shapes into the OmniOMR validation and test splits.
+Used by the `-withomni` experiments. Note that the OmniOMR glyphs come from the OmniOMR train split, so the `gomni` and `gboth` variants leak glyph shapes into the OmniOMR validation and test splits.
 
 These commands create these datasets:
 
