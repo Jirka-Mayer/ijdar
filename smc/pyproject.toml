@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/smc"]
+
+# needed for the git-pinned linearized-musicxml dependency
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[project]
+name = "smc"
+version = "1.0.0"
+authors = [
+  { name="Jiří Mayer", email="mayer@ufal.mff.cuni.cz" },
+]
+dependencies = [
+    "tqdm",
+    "numpy==2.3.5",
+    "opencv-contrib-python==4.13.0.92",
+    "smashcima==1.1.2",
+    # pinned to the exact same commit as zeus v1.0.0 uses,
+    # so that LMX encoding and normalization behave identically
+    "linearized-musicxml @ git+https://github.com/OMR-Research/lmx.git@87fca1c38bda83bc032596ab00af28412f92941d",
+]
+description = "Smashcima data generation for 'smc' models"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[project.scripts]
+smc = "smc.cli:main"

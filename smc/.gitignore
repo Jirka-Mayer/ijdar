@@ -1,0 +1,5 @@
+/.venv
+/smashcima_assets
+/debug
+__pycache__
+*.egg-info
