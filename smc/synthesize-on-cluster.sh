@@ -28,7 +28,8 @@ fi
 
 mkdir -p logs
 
-CMD="smc/.venv/bin/smc synthesize \
+# xvfb-run provides a virtual X server, without it MuseScore fails to start
+CMD="xvfb-run -a smc/.venv/bin/smc synthesize \
     --input-dataset $INPUT_DATASET \
     --output-dataset $OUTPUT_DATASET \
     --glyphs $GLYPHS \
