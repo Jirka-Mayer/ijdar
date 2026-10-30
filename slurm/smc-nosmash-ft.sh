@@ -34,7 +34,7 @@ time .venv-zeus/bin/zeus train \
         datasets/dolores/samples_rendered.test.pickle \
         datasets/olimpic-scanned/samples.test.pickle \
         datasets/olimpic-synthetic/samples.test.pickle \
-    --early-stopping datasets/omniomr/samples.train.pickle \
+    --early-stopping datasets/omniomr/samples.validation.pickle \
     --stopping-patience 10 \
     --evaluation-from 1 \
     --evaluation-each 1 \
