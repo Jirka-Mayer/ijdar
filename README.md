@@ -7,7 +7,7 @@ Here I run/track/code experiments for my final PhD Thesis journal paper (likely 
 
 ```bash
 python3.10 -m venv .venv-zeus
-.venv-zeus/bin/pip install 'zeus @ git+https://github.com/OmniOMR/zeus.git@v1.0.0'
+.venv-zeus/bin/pip install 'zeus @ git+https://github.com/OmniOMR/zeus.git@v1.1.0'
 ```
 
 Now you can use the `zeus` command:
