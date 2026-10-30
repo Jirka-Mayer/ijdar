@@ -17,6 +17,10 @@ Then for models with OmniOMR dataset in training (which cannot be cross-validate
 
 - `smc-...-withomni` = OmniOMR used in training
 
+Then for models without Dolores in training (to see whether Dolores, not Smashcima, is what teaches the model the handwritten look):
+
+- `smcnod-...` instead of `smc-...` = smashcima, no Dolores (plain, rendered and smashcima Dolores are all removed from training; validation and test sets stay the same)
+
 For the fine-tuned models are names:
 
 - Just fine-tuned `-ft-e15` then `-ft-ebest` (best fine-tuning epoch)
@@ -38,6 +42,15 @@ smc-gboth-s1-withomni
 smc-gboth-s2-withomni
 smc-gboth-s3-withomni
 smc-gboth-s4-withomni
+
+# no dolores
+smcnod-nosmash
+smcnod-gboth-s1
+smcnod-gboth-s2
+
+smcnod-nosmash-withomni
+smcnod-gboth-s1-withomni
+smcnod-gboth-s2-withomni
 ```
 
 Solo-staff only, `solo26` zeus architecture. Only train portions of datasets for training.
@@ -269,6 +282,97 @@ Style-wise the `[BD]` and `[HW]` sample counts are fixed (not ratio) and `[SH]` 
 This is to control for the language model effect. We want to only measure changes in visual appearance, not musical content.
 
 The `[HW]` samples get also rendered by smashcima to keep the content ratios fixed.
+
+
+### Without Dolores (`smcnod`)
+
+Same as the `smc` counterparts above, just with all Dolores training data removed (plain, rendered, smashcima). The training time stays at 7507000 samples, so the epoch counts go up.
+
+```mermaid
+pie showData title smcnod-nosmash
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+```
+
+```
+EPOCHS: smcnod-nosmash
+samples in epoch: 22036 = 22036
+epochs = ceil(7507000 / 22036)
+epochs = 341
+```
+
+```mermaid
+pie showData title smcnod-gboth-s1
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[SC] OLiMPiC Smashcima (train)" : 21019
+```
+
+```
+EPOCHS: smcnod-gboth-s1
+samples in epoch: 22036+21019 = 43055
+epochs = ceil(7507000 / 43055)
+epochs = 175
+```
+
+```mermaid
+pie showData title smcnod-gboth-s2
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[SC] OLiMPiC Smashcima 2x (train 2x)" : 42038
+```
+
+```
+EPOCHS: smcnod-gboth-s2
+samples in epoch: 22036+42038 = 64074
+epochs = ceil(7507000 / 64074)
+epochs = 118
+```
+
+```mermaid
+pie showData title smcnod-nosmash-withomni
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] OmniOMR Rendered (train)" : 693
+    "[HW] OmniOMR (train)" : 695
+```
+
+```
+EPOCHS: smcnod-nosmash-withomni
+samples in epoch: 22036+693+695 = 23424
+epochs = ceil(7507000 / 23424)
+epochs = 321
+```
+
+```mermaid
+pie showData title smcnod-gboth-s1-withomni
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] OmniOMR Rendered (train)" : 693
+    "[HW] OmniOMR (train)" : 695
+    "[SC] OLiMPiC Smashcima (train)" : 21019
+    "[SC] OmniOMR Smashcima 2x (train 2x)" : 1320
+```
+
+```
+EPOCHS: smcnod-gboth-s1-withomni
+samples in epoch: 22036+693+695+21019+1320 = 45763
+epochs = ceil(7507000 / 45763)
+epochs = 165
+```
+
+```mermaid
+pie showData title smcnod-gboth-s2-withomni
+    "[BD] OLiMPiC Synthetic (train)" : 22036
+    "[BD] OmniOMR Rendered (train)" : 693
+    "[HW] OmniOMR (train)" : 695
+    "[SC] OLiMPiC Smashcima 2x (train 2x)" : 42038
+    "[SC] OmniOMR Smashcima 4x (train 4x)" : 2640
+```
+
+```
+EPOCHS: smcnod-gboth-s2-withomni
+samples in epoch: 22036+693+695+42038+2640 = 68102
+epochs = ceil(7507000 / 68102)
+epochs = 111
+```
+
+With Dolores gone, the content ratios are no longer the same as for `smc`: OLiMPiC 100% (or ~94% OLiMPiC and ~6% OmniOMR for `-withomni`).
 
 
 ## Fine tuning
